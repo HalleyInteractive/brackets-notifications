@@ -4,6 +4,7 @@
 	position: absolute;
 	top: 5px;
 	right: 5px;
+    z-index: 1;
 }
 
 #notifications-container .simple-notification
@@ -11,4 +12,5 @@
 	background-color: #FFF;
 	width: 200px;
 	height: 75px;
+    padding: 0px 10px;
 }
