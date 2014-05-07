@@ -10,16 +10,16 @@ define(function (require, exports, module)
         NodeDomain     = brackets.getModule("utils/NodeDomain");
 
 	// Load node domain
-    var HalleyInteractiveDomain = new NodeDomain("halleyinteractive", ExtensionUtils.getModulePath(module, "node/Notifications"));
+    var NotificationsDomain = new NodeDomain("notifications", ExtensionUtils.getModulePath(module, "node/Notifications"));
 
 	// Load stylesheet
-	ExtensionUtils.loadStyleSheet(module, "halleyinteractive-notifications.css");
+	ExtensionUtils.loadStyleSheet(module, "brackets-notifications.css");
 
 	// All notifications are appended to this container
 	$(".main-view .content #editor-holder").append("<div id='notifications-container'></div>");
 
 	// Simple notification event listener
-	$(HalleyInteractiveDomain).on("simple-notification", function(title, message)
+	$(NotificationsDomain).on("simple-notification", function(title, message)
 	{
 		console.log("Notification received - title: " + title);
 		console.log("Notification received - message: " + message);
@@ -36,7 +36,7 @@ define(function (require, exports, module)
 	}
 
 	// Sample of triggering a notification
-	HalleyInteractiveDomain.exec("simple-notification", "Sample title", "Sample message")
+	NotificationsDomain.exec("simple-notification", "Sample title", "Sample message")
 	.done(function(msg) { console.log("simple-notification triggered: " + msg); })
 	.fail(function(msg) { console.log("simple-notification triggering failed: " + msg); });
 
