@@ -13,7 +13,7 @@
 		console.log("Simple notification function called: " + m);
 
 		dm.emitEvent(
-		"halleyinteractive",	// Domain
+		"notifications",	// Domain
 		"simple-notification",	// Event
 		{
 			title: t,
@@ -28,10 +28,10 @@
 	{
 		dm = domainManager;
 		
-        if (!dm.hasDomain("halleyinteractive")) { dm.registerDomain("halleyinteractive", {major: 0, minor: 1}); }
+        if (!dm.hasDomain("notifications")) { dm.registerDomain("notifications", {major: 0, minor: 1}); }
 
         dm.registerCommand(
-            "halleyinteractive",		// domain name
+            "notifications",		// domain name
             "simple-notification",		// command name
             simpleNotification,			// command handler function
             false,						// this command is synchronous in Node
@@ -52,7 +52,7 @@
 		);
 
 		dm.registerEvent(
-            "halleyinteractive",		// domain name
+            "notifications",		// domain name
             "simple-notification",		// command name
             [{
 				// Parameter 1
