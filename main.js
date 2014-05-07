@@ -19,12 +19,16 @@ define(function (require, exports, module)
 	$(".main-view .content #editor-holder").append("<div id='notifications-container'></div>");
 
 	// Simple notification event listener
-	$(NotificationsDomain).on("simple-notification", function(title, message)
+	$(NotificationsDomain).on("simple-notification", function(event, parameters)
 	{
-		console.log("Notification received - title: " + title);
-		console.log("Notification received - message: " + message);
+		console.group("Simple Notificaiton Received");
+		console.log(event);
+		console.log(parameters);
+		console.log("Notification received - title: " + parameters.title);
+		console.log("Notification received - message: " + parameters.message);
+		console.groupEnd();
 
-		constructSimpleNotificaiton(title, message);
+		constructSimpleNotificaiton(parameters.title, parameters.message);
 	});
 	
 	// Adds the notification to the notifications container

@@ -7,17 +7,17 @@
 	var dm;
 	
 	// Dispatches the simple notification event
-	function simpleNotification(t, m)
+	function simpleNotification(title, message)
 	{
-		console.log("Simple notification function called: " + t);
-		console.log("Simple notification function called: " + m);
+		console.log("Simple notification function called: " + title);
+		console.log("Simple notification function called: " + message);
 
 		dm.emitEvent(
 		"notifications",	// Domain
 		"simple-notification",	// Event
 		{
-			title: t,
-			messsage: m
+			title: title,
+			message: message
 		}
 		);
 
