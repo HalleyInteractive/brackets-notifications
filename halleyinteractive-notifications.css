@@ -1,0 +1,14 @@
+
+#notifications-container
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+#notifications-container .simple-notification
+{
+	background-color: #FFF;
+	width: 200px;
+	height: 75px;
+}

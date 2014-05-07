@@ -4,54 +4,71 @@
 (function () {
 	"use strict";
 	
-	var domainManager;
+	var dm;
 	
-	function notifciation(title, message)
+	// Dispatches the simple notification event
+	function simpleNotification(t, m)
 	{
-		domainManager.emitEvent(
-		"halleyinteractive",
-		"notification",
-			{
-				title: title,
-				messsage: message
-			}
+		console.log("Simple notification function called: " + t);
+		console.log("Simple notification function called: " + m);
+
+		dm.emitEvent(
+		"halleyinteractive",	// Domain
+		"simple-notification",	// Event
+		{
+			title: t,
+			messsage: m
+		}
 		);
-		return "test";
+
 	}
 
+	// Registers all commands and events
 	function init(domainManager)
 	{
-		domainManager = domainManager;
+		dm = domainManager;
 		
-        if (!domainManager.hasDomain("halleyinteractive"))
-		{
-            domainManager.registerDomain("halleyinteractive", {major: 0, minor: 1});
-        }
-        domainManager.registerCommand (
+        if (!dm.hasDomain("halleyinteractive")) { dm.registerDomain("halleyinteractive", {major: 0, minor: 1}); }
+
+        dm.registerCommand(
             "halleyinteractive",		// domain name
-            "notification",				// command name
-            notifciation,				// command handler function
+            "simple-notification",		// command name
+            simpleNotification,			// command handler function
             false,						// this command is synchronous in Node
             "Shows a notification in the Brackets editor view",
             [{
 				// Parameter 1
 				name: "title",
-				type: "String",
+				type: "string",
 				descriptions: "This will be the title in the notification"
 			},
 			{
 				// Parameter 2
 				name: "message",
-				type: "String",
+				type: "string",
 				descriptions: "This will be the message in the notification"
 			}],
-            [{	
-				// return values
-				name: "test",
-                type: "string",
-                description: "test"
+            []
+		);
+
+		dm.registerEvent(
+            "halleyinteractive",		// domain name
+            "simple-notification",		// command name
+            [{
+				// Parameter 1
+				name: "title",
+				type: "string",
+				descriptions: "This will be the title in the notification"
+			},
+			{
+				// Parameter 2
+				name: "message",
+				type: "string",
+				descriptions: "This will be the message in the notification"
 			}]
 		);
 	}
+
     exports.init = init;
+
 }());
