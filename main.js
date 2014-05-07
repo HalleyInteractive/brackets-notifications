@@ -21,18 +21,18 @@ define(function (require, exports, module)
 	// Simple notification event listener
 	$(NotificationsDomain).on("simple-notification", function(event, parameters)
 	{
-		console.group("Simple Notificaiton Received");
+		console.group("Simple Notification Received");
 		console.log(event);
 		console.log(parameters);
 		console.log("Notification received - title: " + parameters.title);
 		console.log("Notification received - message: " + parameters.message);
 		console.groupEnd();
 
-		constructSimpleNotificaiton(parameters.title, parameters.message);
+		constructSimpleNotification(parameters.title, parameters.message);
 	});
 	
 	// Adds the notification to the notifications container
-	function constructSimpleNotificaiton(title, message)
+	function constructSimpleNotification(title, message)
 	{
 		var simpleNotification = $("<div class='simple-notification'><h3>"+title+"</h3><p>"+message+"</p></div>");
 		$("#notifications-container").append(simpleNotification);
