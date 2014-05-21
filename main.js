@@ -16,16 +16,16 @@ define(function (require, exports, module)
 	$(".main-view .content #editor-holder").append("<div id='notifications-container'></div>");
 	
 	// Adds the notification to the notifications container
-	function constructSimpleNotification(title, message)
+	function constructNotification(input)
 	{
-		console.log("Construct Simple Notification");
-		var simpleNotification = $("<div class='simple-notification'><h3>"+title+"</h3><p>"+message+"</p></div>");
-		$("#notifications-container").append(simpleNotification);
-		simpleNotification.delay(2000).fadeOut();
+		console.log("Construct Notification");
+		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>");
+		$("#notifications-container").append(notification);
+		notification.delay(2000).fadeOut();
 	}
 
     // First, register a command - a UI-less object associating an id to a handler
-    var SIMPLE_NOTIFICATION_COMMAND_ID = "notifications.simple";   // package-style naming to avoid collisions
-    CommandManager.register("Send Simple Notification notification", SIMPLE_NOTIFICATION_COMMAND_ID, constructSimpleNotification);
+    var NOTIFICATION_COMMAND_ID = "notifications.notification";   // package-style naming to avoid collisions      TODO: Check whether this is not crazy naming..
+    CommandManager.register("Send Notification notification", NOTIFICATION_COMMAND_ID, constructNotification);
 
 });

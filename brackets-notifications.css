@@ -7,7 +7,7 @@
     z-index: 9999; /*yolo*/
 }
 
-#notifications-container .simple-notification
+#notifications-container .notification
 {
 	background-color: #5d5f60;
 	width: 200px;
@@ -16,14 +16,14 @@
     margin: 0 0 8px 0;
 }
 
-#notifications-container .simple-notification h3
+#notifications-container .notification h3
 {
     margin:0;
     color: #8fddff;
     font-size:20px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
-#notifications-container .simple-notification p
+#notifications-container .notification p
 {
     margin:0 0 5px 0;
     color: #CECECE;
