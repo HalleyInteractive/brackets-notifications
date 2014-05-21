@@ -18,14 +18,37 @@ define(function (require, exports, module)
 	// Adds the notification to the notifications container
 	function constructNotification(input)
 	{
-		console.log("Construct Notification");
+		// Define defaults
+        var defaults = 
+        {
+            title:"",
+            message:"",
+            time:2000
+        }
+        // Merge missing defaults into input
+        for(var prop in defaults)
+        {
+            console.log(input[prop])
+            input[prop] = input[prop] !== undefined? input[prop] : defaults[prop];
+        }
+    
+        console.log("Construct Notification");
 		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>");
+        notification.click(clickHandler);
 		$("#notifications-container").append(notification);
-		notification.delay(2000).fadeOut();
+        if(input.time !== 0)
+        {
+            notification.delay(input.time).fadeOut();
+        }
 	}
-
+    
     // First, register a command - a UI-less object associating an id to a handler
     var NOTIFICATION_COMMAND_ID = "notifications.notification";   // package-style naming to avoid collisions      TODO: Check whether this is not crazy naming..
     CommandManager.register("Send Notification notification", NOTIFICATION_COMMAND_ID, constructNotification);
 
+    // Handle clicks.
+    function clickHandler(e)
+    {
+        $(this).fadeOut();
+    }
 });
