@@ -28,7 +28,6 @@ define(function (require, exports, module)
         // Merge missing defaults into input
         for(var prop in defaults)
         {
-            console.log(input[prop])
             input[prop] = input[prop] !== undefined? input[prop] : defaults[prop];
         }
     
