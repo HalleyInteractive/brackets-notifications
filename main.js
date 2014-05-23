@@ -18,6 +18,11 @@ define(function (require, exports, module)
 	// Adds the notification to the notifications container
 	function constructNotification(input)
 	{
+		console.log("Construct Notification");
+		
+		// ReturnData contains the notification element and the action elements for binding events to
+		var returnData = {};
+		
 		// Define defaults
         var defaults = 
         {
@@ -31,14 +36,31 @@ define(function (require, exports, module)
             input[prop] = input[prop] !== undefined? input[prop] : defaults[prop];
         }
     
-        console.log("Construct Notification");
+		// Contruct and append notification
 		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>");
-        notification.click(clickHandler);
+        if(input.actions !== undefined)
+		{
+			var actions = $("<div class='actions'></div>");
+			returnData.actions = [];
+			for(var i=0; i<input.actions.length; i++)
+			{
+				var action = $("<div class='action'>"+input.actions[i]+"</div>")
+				actions.append(action);
+				returnData.actions[input.actions[i]] = action;
+			}
+			notification.append(actions);
+		}
+		notification.click(clickHandler);
 		$("#notifications-container").append(notification);
-        if(input.time !== 0)
+        returnData.notification = notification;
+		
+		// Fade if time is set
+		if(input.time !== 0)
         {
             notification.delay(input.time).fadeOut();
         }
+		
+		return returnData;
 	}
     
     // First, register a command - a UI-less object associating an id to a handler
