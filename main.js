@@ -44,7 +44,8 @@ define(function (require, exports, module)
 			returnData.actions = [];
 			for(var i=0; i<input.actions.length; i++)
 			{
-				var action = $("<div class='action'>"+input.actions[i]+"</div>")
+				var action = $("<div class='action'>"+input.actions[i].label+"</div>")
+				action.click(input.actions[i].callback);
 				actions.append(action);
 				returnData.actions[input.actions[i]] = action;
 			}
