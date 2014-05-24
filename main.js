@@ -45,7 +45,7 @@ define(function (require, exports, module)
 			for(var i=0; i<input.actions.length; i++)
 			{
 				var action = $("<div class='action'>"+input.actions[i].label+"</div>");
-				if(action[i].callback !== undefined)
+				if(input.actions[i].callback !== undefined)
 				{
 					action.click(input.actions[i].callback);
 				}
