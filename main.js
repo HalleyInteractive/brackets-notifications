@@ -37,26 +37,30 @@ define(function (require, exports, module)
         }
     
 		// Contruct and append notification
-		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>");
+		// Save options to the element's data
+		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>").data(input);
         if(input.actions !== undefined)
 		{
 			var actions = $("<div class='actions'></div>");
-			returnData.actions = [];
 			for(var i=0; i<input.actions.length; i++)
 			{
 				var action = $("<div class='action'>"+input.actions[i].label+"</div>");
 				if(input.actions[i].callback !== undefined)
 				{
+					action.click(clickHandler);
 					action.click(input.actions[i].callback);
 				}
 				actions.append(action);
-				returnData.actions[input.actions[i]] = action;
 			}
 			notification.append(actions);
 		}
 		notification.click(clickHandler);
+		if(input.clicked !== undefined)
+		{
+			notification.click(input.clicked);
+		}
+		
 		$("#notifications-container").append(notification);
-        returnData.notification = notification;
 		
 		// Fade if time is set
 		if(input.time !== 0)
@@ -64,16 +68,21 @@ define(function (require, exports, module)
             notification.delay(input.time).fadeOut();
         }
 		
-		return returnData;
+		return notification;
 	}
     
     // First, register a command - a UI-less object associating an id to a handler
     var NOTIFICATION_COMMAND_ID = "notifications.notification";   // package-style naming to avoid collisions      TODO: Check whether this is not crazy naming..
     CommandManager.register("Send Notification notification", NOTIFICATION_COMMAND_ID, constructNotification);
 
-    // Handle clicks.
-    function clickHandler(e)
+    // Handle clicks fired by notif and actions.
+    function clickHandler()
     {
-        $(this).fadeOut();
+		if($(this).hasClass('action'))
+		{
+			$(this).parents('.notification').fadeOut();		// TODO: prevent parents() from going to far up the DOM
+		}else{
+			$(this).fadeOut();
+		}
     }
 });
