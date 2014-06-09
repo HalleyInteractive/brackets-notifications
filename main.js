@@ -9,6 +9,8 @@ define(function (require, exports, module)
 	var ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),
 		CommandManager = brackets.getModule("command/CommandManager");
 
+	var settings = require("settings");
+
 	// Load stylesheet
 	ExtensionUtils.loadStyleSheet(module, "brackets-notifications.css");
 
@@ -18,57 +20,62 @@ define(function (require, exports, module)
 	// Adds the notification to the notifications container
 	function constructNotification(input)
 	{
-		console.log("Construct Notification");
-		
-		// ReturnData contains the notification element and the action elements for binding events to
-		var returnData = {};
-		
-		// Define defaults
-        var defaults = 
-        {
-            title:"",
-            message:"",
-            time:2000
-        }
-        // Merge missing defaults into input
-        for(var prop in defaults)
-        {
-            input[prop] = input[prop] !== undefined? input[prop] : defaults[prop];
-        }
-    
-		// Contruct and append notification
-		// Save options to the element's data
-		var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>").data(input);
-        if(input.actions !== undefined)
+		console.log("Construct Notification: " + settings.get('enabled'));
+		if(settings.get('enabled'))
 		{
-			var actions = $("<div class='actions'></div>");
-			for(var i=0; i<input.actions.length; i++)
+			// ReturnData contains the notification element and the action elements for binding events to
+			var returnData = {};
+
+			// Define defaults
+			var defaults =
 			{
-				var action = $("<div class='action'>"+input.actions[i].label+"</div>");
-				if(input.actions[i].callback !== undefined)
-				{
-					action.click(clickHandler);
-					action.click(input.actions[i].callback);
-				}
-				actions.append(action);
+				title:"",
+				message:"",
+				time:settings.get('delay')
 			}
-			notification.append(actions);
-		}
-		notification.click(clickHandler);
-		if(input.clicked !== undefined)
+			// Merge missing defaults into input
+			for(var prop in defaults)
+			{
+				input[prop] = input[prop] !== undefined? input[prop] : defaults[prop];
+			}
+
+			// Contruct and append notification
+			// Save options to the element's data
+			var notification = $("<div class='notification'><h3>"+input.title+"</h3><p>"+input.message+"</p></div>").data(input);
+			if(input.actions !== undefined)
+			{
+				var actions = $("<div class='actions'></div>");
+				for(var i=0; i<input.actions.length; i++)
+				{
+					var action = $("<div class='action'>"+input.actions[i].label+"</div>");
+					if(input.actions[i].callback !== undefined)
+					{
+						action.click(clickHandler);
+						action.click(input.actions[i].callback);
+					}
+					actions.append(action);
+				}
+				notification.append(actions);
+			}
+			notification.click(clickHandler);
+			if(input.clicked !== undefined)
+			{
+				notification.click(input.clicked);
+			}
+
+			$("#notifications-container").append(notification);
+
+			// Fade if time is set
+			if(input.time !== 0)
+			{
+				notification.delay(input.time).fadeOut();
+			}
+
+			return notification;
+		} else
 		{
-			notification.click(input.clicked);
+			return null;
 		}
-		
-		$("#notifications-container").append(notification);
-		
-		// Fade if time is set
-		if(input.time !== 0)
-        {
-            notification.delay(input.time).fadeOut();
-        }
-		
-		return notification;
 	}
     
     // First, register a command - a UI-less object associating an id to a handler
