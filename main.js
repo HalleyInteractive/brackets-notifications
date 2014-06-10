@@ -68,7 +68,7 @@ define(function (require, exports, module)
 			// Fade if time is set
 			if(input.time !== 0)
 			{
-				notification.delay(input.time).fadeOut();
+				notification.delay(input.time).fadeOut(function(){ $(this).remove(); });
 			}
 
 			return notification;
@@ -85,11 +85,6 @@ define(function (require, exports, module)
     // Handle clicks fired by notif and actions.
     function clickHandler()
     {
-		if($(this).hasClass('action'))
-		{
-			$(this).parents('.notification').fadeOut();		// TODO: prevent parents() from going to far up the DOM
-		}else{
-			$(this).fadeOut();
-		}
+		$(this).stop(false).fadeOut(function(){ $(this).remove(); });
     }
 });
