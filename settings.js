@@ -16,7 +16,7 @@ define(function (require, exports)
 
 	var SETTINGS_COMMAND_ID = "notification.settings";
 
-	var dialogTemplate = require('text!settings.template');
+	var dialogTemplate = require('text!templates/settings.template');
 	var dialog;
 	var $dialog;
 

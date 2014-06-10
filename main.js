@@ -12,7 +12,7 @@ define(function (require, exports, module)
 	var settings = require("settings");
 
 	// Load stylesheet
-	ExtensionUtils.loadStyleSheet(module, "brackets-notifications.css");
+	ExtensionUtils.loadStyleSheet(module, "css/brackets-notifications.css");
 
 	// All notifications are appended to this container
 	$(".main-view .content #editor-holder").append("<div id='notifications-container'></div>");
