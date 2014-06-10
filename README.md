@@ -27,7 +27,7 @@ CommandManager.execute("notifications.notification", notification);
 ##### Possible options
 
 | Option | Description |
-|----------------------|
+|----:|----|
 | title | The title shown in the notification. |
 | message | The body of the notification. |
 | time | Number of milliseconds before the notification dissapears automatically. *Default: 2000* |
@@ -42,7 +42,7 @@ CommandManager.execute("notifications.notification", notification);
 An action will be displayed as a button in the notification. The notification will be removed after the user clicks on a action button.
 
 | Property | Description |
-|-------------------------|
+|----:|----|
 | label | A short label describing the action. |
 | callback | Function to be called after the user clicks this action |
 
