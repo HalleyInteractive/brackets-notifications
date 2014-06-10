@@ -23,9 +23,6 @@ define(function (require, exports, module)
 		console.log("Construct Notification: " + settings.get('enabled'));
 		if(settings.get('enabled'))
 		{
-			// ReturnData contains the notification element and the action elements for binding events to
-			var returnData = {};
-
 			// Define defaults
 			var defaults =
 			{
