@@ -1,0 +1,10 @@
+{{#.}}
+	<div class="row-fluid">
+		<div class="span2" data-color="{{color}}" style="background-color:{{color}}">
+
+		</div>
+		<div class="span10" data-name="{{name}}">
+			{{name}}
+		</div>
+	</div>
+{{/.}}
