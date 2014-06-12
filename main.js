@@ -82,6 +82,8 @@ define(function (require, exports, module)
 
 		$("#notifications-container").append(notification);
 
+		settings.saveNotification({title:input.title, message:input.message, color:'#FF0000'});
+
 		return notification;
 	}
 

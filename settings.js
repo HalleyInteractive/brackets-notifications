@@ -90,6 +90,17 @@ define(function (require, exports, module)
 		});
 	}
 
+	function saveSettingsFile()
+	{
+		FileUtils.writeText(settingsFile, JSON.stringify(settingsJSON, null, '\t'));
+	}
+
+	function saveNotification(notification)
+	{
+		settingsJSON.notifications.push(notification);
+		saveSettingsFile();
+	}
+
 	/**
 	* Returns a setting from the preference file
 	*/
@@ -100,4 +111,5 @@ define(function (require, exports, module)
 
 	// Exports
 	exports.get = getSetting;
+	exports.saveNotification = saveNotification;
 });
