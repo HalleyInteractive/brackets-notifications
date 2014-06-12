@@ -7,6 +7,7 @@
         <ul class="nav nav-tabs" id="notification-settings-tabs">
             <li class="nav-button active" data-tab="notification-settings-tab-general"><a href="#">Settings</a></li>
             <li class="nav-button" data-tab="notification-settings-tab-extensions"><a href="#">Extensions</a></li>
+            <li class="nav-button" data-tab="notification-settings-tab-notifications"><a href="#">Notifications</a></li>
         </ul>
 
         <div class="tab-content">
@@ -14,6 +15,9 @@
                
             </div>
 			<div class="tab-pane" id="notification-settings-tab-extensions">
+                
+            </div>
+			<div class="tab-pane" id="notification-settings-tab-notifications">
                 
             </div>
         </div>

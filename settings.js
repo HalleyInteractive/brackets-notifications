@@ -21,6 +21,7 @@ define(function (require, exports, module)
 	var SETTINGS_DIALOG_TEMPLATE = require('text!templates/settings.template');
 	var SETTINGS_GENERAL_TEMPLATE = require('text!templates/settings-tab-general.template');
 	var SETTINGS_EXTENSIONS_TEMPLATE = require('text!templates/settings-tab-extensions.template');
+	var SETTINGS_NOTIFICATIONS_TEMPLATE = require('text!templates/settings-tab-notifications.template');
 
 	var settingsFile = FileSystem.getFileForPath(FileUtils.getNativeModuleDirectoryPath(module) + '/settings.json');
 	var settingsJSON;
@@ -52,12 +53,14 @@ define(function (require, exports, module)
 
 		var compiledGeneralTab = Mustache.render(SETTINGS_GENERAL_TEMPLATE, settings);
 		var compiledExtensionsTab = Mustache.render(SETTINGS_EXTENSIONS_TEMPLATE, settingsJSON.extensions);
+		var compiledNotificationsTab = Mustache.render(SETTINGS_NOTIFICATIONS_TEMPLATE, settingsJSON.notifications);
 
 		dialog = Dialogs.showModalDialogUsingTemplate(compiledDialog);
 		$dialog = dialog.getElement();
 
 		$("#notification-settings-tab-general", $dialog).append(compiledGeneralTab);
 		$("#notification-settings-tab-extensions", $dialog).append(compiledExtensionsTab);
+		$("#notification-settings-tab-notifications", $dialog).append(compiledNotificationsTab);
 
 		$("#notification-settings-save", $dialog).click(function()
 		{

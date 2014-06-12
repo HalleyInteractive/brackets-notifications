@@ -16,6 +16,10 @@
 	],
 	"notifications":
 	[
-
+		{
+			"title": "Sample notification",
+			"message": "Sample message",
+			"color": "#396C1A"
+		}
 	]
 }
