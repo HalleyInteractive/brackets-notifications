@@ -73,21 +73,12 @@ define(function (require, exports, module)
 
 		});
 
-		// Tab button actions
-		$("#notification-settings-dialog .nav-button").click(function()
+		$("#notification-settings-dialog .nav-button").click(function(e)
 		{
-			var element = $(this);
-			if(!element.hasClass('active'))
-			{
-				// Remove active state from current tab and pane
-				$(".tab-content .tab-pane.active").hide().removeClass("active");
-				$(".nav-button.active").removeClass("active");
-
-				// Add active state to the new tab and pane
-				element.addClass("active");
-				$("#" + element.data('tab')).show().addClass('active');
-			}
+			e.preventDefault();
+  			$(this).tab('show');
 		});
+
 	}
 
 	function saveSettingsFile()

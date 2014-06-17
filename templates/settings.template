@@ -5,9 +5,9 @@
     <div class="modal-body">
 
         <ul class="nav nav-tabs" id="notification-settings-tabs">
-            <li class="nav-button active" data-tab="notification-settings-tab-general"><a href="#">Settings</a></li>
-            <li class="nav-button" data-tab="notification-settings-tab-extensions"><a href="#">Extensions</a></li>
-            <li class="nav-button" data-tab="notification-settings-tab-notifications"><a href="#">Notifications</a></li>
+            <li class='active'><a href="#notification-settings-tab-general" class="nav-button" data-toggle='tab'>Settings</a></li>
+            <li><a href="#notification-settings-tab-extensions" class="nav-button" data-toggle='tab'>Extensions</a></li>
+            <li><a href="#notification-settings-tab-notifications" class="nav-button" data-toggle='tab'>Notifications</a></li>
         </ul>
 
         <div class="tab-content">
