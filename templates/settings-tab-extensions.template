@@ -1,10 +1,15 @@
 {{#.}}
 	<div class="row-fluid">
-		<div class="span2" data-color="{{color}}" style="background-color:{{color}}">
+		<div class="extension" data-name="{{name}}">
+			<div class="span2" data-color="{{color}}" style="background-color:{{color}}">
 
-		</div>
-		<div class="span10" data-name="{{name}}">
-			{{name}}
+			</div>
+			<div class="span8">
+				{{name}}
+			</div>
+			<div class="span2">
+				<input class="notification-extension-active" type="checkbox" data-extension="{{name}}" {{#active}}checked{{/active}} />
+			</div>
 		</div>
 	</div>
 {{/.}}

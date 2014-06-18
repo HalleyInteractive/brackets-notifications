@@ -1,21 +1,22 @@
 {
-	"extensions":
-	[
+	"extensions": [
 		{
 			"name": "node-api",
-			"color": "#396C1A"
+			"color": "#396C1A",
+			"active": true
 		},
 		{
 			"name": "brackets-notification-example",
-			"color": "#6200FF"
+			"color": "#6200FF",
+			"active": true
 		},
 		{
 			"name": "brackets-tasks",
-			"color": "#FF0000"
+			"color": "#FF0000",
+			"active": true
 		}
 	],
-	"notifications":
-	[
+	"notifications": [
 		{
 			"title": "Sample notification",
 			"message": "Sample message",

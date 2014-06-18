@@ -71,6 +71,15 @@ define(function (require, exports, module)
 			prefs.set("delay", $("#notification-settings-delay", $dialog).val());
 			prefs.save();
 
+			$(".extension", $dialog).each(function(key, value)
+			{
+				var extensionName = $(value).data('name');
+				var extensionActive = $(".notification-extension-active", value).is(":checked");
+				var extension = $.grep(settingsJSON.extensions, function(e){ return e.name === extensionName; });
+
+				extension[0].active = extensionActive;
+			});
+			saveSettingsFile();
 		});
 
 		$("#notification-settings-dialog .nav-button").click(function(e)
